@@ -2,28 +2,29 @@ import {ApplicationRef, CUSTOM_ELEMENTS_SCHEMA, DoBootstrap, Injector, NgModule}
 import {BrowserModule} from '@angular/platform-browser';
 
 import {NestedTwoComponent} from './nested-two.component';
-import {createCustomElement} from '@angular/elements';
 import {NestedNestedTwoModule} from '../nested-nested-two/nested-nested-two.module';
+import {RouterModule, Routes} from '@angular/router';
 
-const local = false;
+const routes: Routes = [
+  {
+    path: '',
+    component: NestedTwoComponent
+  },
+];
 
 @NgModule({
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [
+    NestedTwoComponent
+  ],
+  exports: [
     NestedTwoComponent
   ],
   imports: [
     BrowserModule,
+    RouterModule.forChild(routes),
     NestedNestedTwoModule,
   ],
-  bootstrap: [local ? NestedTwoComponent : []]
 })
-export class NestedTwoModule implements DoBootstrap {
-  constructor(private injector: Injector) {
-    const nestedTwo = createCustomElement(NestedTwoComponent, {injector: this.injector});
-    customElements.define('child-nested', nestedTwo);
-  }
+export class NestedTwoModule {
 
-  ngDoBootstrap(appRef: ApplicationRef): void {
-  }
 }

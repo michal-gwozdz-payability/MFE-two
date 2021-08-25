@@ -3,22 +3,18 @@ import {BrowserModule} from '@angular/platform-browser';
 
 import {NestedNestedTwoComponent} from './nested-nested-two.component';
 import {createCustomElement} from '@angular/elements';
+import {RouterModule, Routes} from '@angular/router';
 
 @NgModule({
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [
+    NestedNestedTwoComponent
+  ],
+  exports: [
     NestedNestedTwoComponent
   ],
   imports: [
     BrowserModule,
   ],
-  exports: [
-    NestedNestedTwoComponent
-  ]
 })
 export class NestedNestedTwoModule {
-  constructor(private injector: Injector) {
-    const nestedNestedTwo = createCustomElement(NestedNestedTwoComponent, {injector: this.injector});
-    customElements.define('child-nested-nested', nestedNestedTwo);
-  }
 }

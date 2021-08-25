@@ -5,10 +5,16 @@
     "ng": "ng",
     "start": "npm run build && npm run buildrun",
     "build": "ng build --configuration production --single-bundle --output-hashing none --vendor-chunk false",
-    "buildrun": "npm run-script build && lite-server --baseDir=dist/MFE-two "
+    "buildrun": "npm run-script build && lite-server --baseDir=dist/MFE-two ",
+    "run:all": "node node_modules/@angular-architects/module-federation/src/server/mf-dev-server.js"
   },
   "private": true,
+  "resolutions": {
+    "webpack": "^5.4.0",
+    "license-webpack-plugin": "2.3.17"
+  },
   "dependencies": {
+    "@angular-architects/module-federation": "^12.4.1",
     "@angular-extensions/elements": "^12.6.0",
     "@angular/animations": "~12.2.0",
     "@angular/common": "~12.2.0",
