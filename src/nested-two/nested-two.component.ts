@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {NestedService} from '../nested-service/nested.service';
+import {AppWorkerService} from '../nested-service/app-worker.service';
 
 @Component({
   selector: 'nested-two',
@@ -10,7 +11,8 @@ export class NestedTwoComponent implements OnInit, OnDestroy {
   nestedValue: string = '';
   changed: boolean = false;
 
-  constructor(private readonly nestedService: NestedService) {
+  constructor(private readonly nestedService: NestedService,
+              private readonly workerService: AppWorkerService) {
   }
 
   @Output()
@@ -37,7 +39,11 @@ export class NestedTwoComponent implements OnInit, OnDestroy {
   }
 
   emitEvent(): void {
-    this.nestedService.emitEvent(this.value);
+    this.nestedService.emitEvent(this.value + ' window');
+  }
+
+  emitWorkerEvent(): void {
+    this.workerService.emitEvent(this.value + ' worker');
   }
 
   onNestedOutput($event: any): void {
