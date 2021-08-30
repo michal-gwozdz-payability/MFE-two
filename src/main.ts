@@ -1,12 +1,12 @@
-import { enableProdMode } from '@angular/core';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import {enableProdMode} from '@angular/core';
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 
-import { NestedTwoModule } from './nested-two/nested-two.module';
-import { environment } from './environments/environment';
+import {environment} from './environments/environment';
+import {PybMpStatusModule} from './status/pyb-mp-status.module';
 
 if (environment.production) {
   enableProdMode();
 }
 
-platformBrowserDynamic().bootstrapModule(NestedTwoModule)
+platformBrowserDynamic().bootstrapModule(PybMpStatusModule)
   .catch(err => console.error(err));

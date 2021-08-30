@@ -1,8 +1,0 @@
-<div class="p-10 m-5 rounded-sm"
-     [ngClass]="{'bg-red-700': changed, 'bg-green-200': !changed}">
-  CHILD TWO - {{ value }}
-  <span class="pl-20" *ngIf="changed">REVERTING VALUE!</span>
-
-  <button class="ml-10 mb-5 bg-transparent font-semibold py-2 px-4 border border-white rounded"
-          (click)="emitEvent()">Emit Child Event</button>
-</div>
