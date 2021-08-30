@@ -35,12 +35,6 @@ export class PybMpStatusComponent {
 
   constructor(private readonly cd: ChangeDetectorRef) {
     console.log('PybMpStatus created');
-    this.configuration = {
-      logo: 'https://e7.pngegg.com/pngimages/914/162/png-clipart-discounts-and-allowances-coupon-retail-online-shopping-aliexpress-aliexpress-text-retail.png',
-      label: 'AliExpress',
-      authId: '',
-      supplierKey: ''
-    };
   }
 
   @Output()
