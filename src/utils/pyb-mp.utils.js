@@ -15,5 +15,3 @@ const PybIntegrationUtils = {
     return new Promise((res) => setTimeout(() => res({validation: true}), 500));
   },
 };
-
-module.exports = { PybIntegrationUtils };
