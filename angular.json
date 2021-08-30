@@ -27,13 +27,17 @@
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "src/favicon.ico",
               "src/assets"
             ],
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              {
+                "bundleName": "pyb-mp.utils",
+                "input": "src/utils/pyb-mp.utils.js"
+              }
+            ]
           },
           "configurations": {
             "production": {
@@ -88,24 +92,6 @@
             "browserTarget": "MFE-two:build"
           }
         },
-        "test": {
-          "builder": "ngx-build-plus:karma",
-          "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.spec.json",
-            "karmaConfig": "karma.conf.js",
-            "inlineStyleLanguage": "scss",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.scss"
-            ],
-            "scripts": []
-          }
-        }
       }
     }
   },
