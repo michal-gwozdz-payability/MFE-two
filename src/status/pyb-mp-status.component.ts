@@ -1,17 +1,46 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, Input, Output} from '@angular/core';
+
+export enum PybMpStatusState {
+  Active = 'Active',
+  Rejected = 'Rejected',
+  Pending = 'Pending'
+}
+
+export interface PybMpStatusConfig {
+  logo: string;
+  label: string;
+  authId: string;
+  supplierKey: string;
+}
+
+interface PybMpStatusConfigInternal extends PybMpStatusConfig {
+  status?: PybMpStatusState;
+}
 
 @Component({
-  selector: 'pyb-mp-status',
-  template: `
-    <div>
-      <div>PybMpStatus</div>
-      <ng-content></ng-content>
-    </div>`,
+  selector: 'pyb-mp-status-inner',
+  templateUrl: './pyb-mp-status.component.html',
+  styleUrls: ['./pyb-mp-status.component.scss']
 })
 export class PybMpStatusComponent {
+  statusLoading: boolean = false;
+  statusConfig: PybMpStatusConfigInternal = {
+    logo: '',
+    label: '',
+    supplierKey: '',
+    authId: ''
+  };
+  statusBgColor: string = '';
+  statusFontColor: string = '';
 
-  constructor() {
+  constructor(private readonly cd: ChangeDetectorRef) {
     console.log('PybMpStatus created');
+    this.configuration = {
+      logo: 'https://e7.pngegg.com/pngimages/914/162/png-clipart-discounts-and-allowances-coupon-retail-online-shopping-aliexpress-aliexpress-text-retail.png',
+      label: 'AliExpress',
+      authId: '',
+      supplierKey: ''
+    };
   }
 
   @Output()
@@ -21,17 +50,40 @@ export class PybMpStatusComponent {
   readonly loading = new EventEmitter();
 
   @Input()
-  set credentials(credentials: { authId: string, supplierKey: string }) {
-    if (credentials) {
+  set configuration(config: PybMpStatusConfig) {
+    if (config) {
+      this.statusLoading = true;
       this.loading.emit(true);
-      this.loadData(credentials);
+      this.loadData(config);
     }
   }
 
-  private loadData(credentials: { authId: string, supplierKey: string }): void {
+  private loadData(config: PybMpStatusConfig): void {
     setTimeout(() => {
-      this.onCredLoaded.emit({ credentials, authorized: true, status: 'Connected' });
+      const status = PybMpStatusState.Active;
+      this.statusConfig = {...this.statusConfig, ...config, status};
+      this.onCredLoaded.emit({ ...this.statusConfig, authorized: true });
+      this.updateStatus(status);
+      this.statusLoading = false;
       this.loading.emit(false);
+      this.cd.detectChanges();
     }, 800);
+  }
+
+  private updateStatus(status: PybMpStatusState): void {
+    switch (status) {
+      case PybMpStatusState.Active:
+        this.statusBgColor = 'bg-green-400';
+        this.statusFontColor = 'text-green-400';
+        break;
+      case PybMpStatusState.Rejected:
+        this.statusBgColor = 'bg-red-600';
+        this.statusFontColor = 'text-red-600';
+        break;
+      case PybMpStatusState.Pending:
+        this.statusBgColor = 'bg-green-400';
+        this.statusFontColor = 'text-green-400';
+        break;
+    }
   }
 }

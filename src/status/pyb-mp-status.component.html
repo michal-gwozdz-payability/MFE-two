@@ -1,0 +1,22 @@
+<div class="pyb-mp-status flex items-center flex-row justify-between rounded-sm border-2 border-gray-200 m-1 p-4 w-min">
+  <div class="pyb-mp-status__left flex items-center flex-row">
+    <p class="font-semibold">{{ statusConfig?.label }}</p>
+
+    <ng-container *ngIf="statusLoading; else statusTemplate">
+      <div class="loader ease-linear rounded-full border-2 border-t-2 border-gray-200 h-3 w-3 mx-2"></div>
+    </ng-container>
+
+    <ng-template #statusTemplate>
+       <span class="flex items-center flex-row">
+        <div class="rounded-full bg-gray-200 h-3 w-3 ml-3 mr-2" [ngClass]="statusBgColor"></div>
+        <p [ngClass]="statusFontColor">{{ statusConfig?.status }}</p>
+      </span>
+    </ng-template>
+  </div>
+
+  <div class="pyb-mp-status__right flex items-center flex-row w-40 h-10 overflow-hidden ml-10">
+    <img [src]="statusConfig?.logo">
+  </div>
+
+  <ng-content></ng-content>
+</div>
