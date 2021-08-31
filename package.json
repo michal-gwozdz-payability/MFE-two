@@ -5,7 +5,8 @@
     "ng": "ng",
     "start": "npm run build && npm run buildrun",
     "build": "ng build --configuration production --single-bundle --vendor-chunk false",
-    "buildrun": "npm run-script build && lite-server --baseDir=dist/MFE-two "
+    "buildrun": "npm run-script build && npm run pack && lite-server --baseDir=dist/MFE-two",
+    "pack": "cat dist/MFE-two/main.js dist/MFE-two/polyfills.js dist/MFE-two/pyb-mp.utils.js > dist/MFE-two/bundle.js"
   },
   "private": true,
   "dependencies": {
@@ -19,6 +20,7 @@
     "@angular/platform-browser": "~12.2.0",
     "@angular/platform-browser-dynamic": "~12.2.0",
     "@angular/router": "~12.2.0",
+    "@webcomponents/webcomponentsjs": "^2.6.0",
     "ngx-build-plus": "^12.2.0",
     "rxjs": "~6.6.0",
     "tailwindcss": "^2.2.7",

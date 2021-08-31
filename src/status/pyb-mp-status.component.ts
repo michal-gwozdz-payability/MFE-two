@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, EventEmitter, Input, Output} from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, Input, Output, ViewEncapsulation} from '@angular/core';
 
 export enum PybMpStatusState {
   Active = 'Active',
@@ -20,7 +20,8 @@ interface PybMpStatusConfigInternal extends PybMpStatusConfig {
 @Component({
   selector: 'pyb-mp-status-inner',
   templateUrl: './pyb-mp-status.component.html',
-  styleUrls: ['./pyb-mp-status.component.scss']
+  styleUrls: ['./pyb-mp-status.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class PybMpStatusComponent {
   statusLoading: boolean = false;
