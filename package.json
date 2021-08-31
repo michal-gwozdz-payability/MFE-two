@@ -5,8 +5,7 @@
     "ng": "ng",
     "start": "npm run build && npm run buildrun",
     "build": "ng build --configuration production --single-bundle --vendor-chunk false",
-    "buildrun": "npm run-script build && npm run pack && lite-server --baseDir=dist/MFE-two",
-    "pack": "cat dist/MFE-two/main.js dist/MFE-two/polyfills.js dist/MFE-two/pyb-mp.utils.js > dist/MFE-two/bundle.js"
+    "buildrun": "npm run-script build && lite-server --baseDir=dist/MFE-two"
   },
   "private": true,
   "dependencies": {
