@@ -33,10 +33,6 @@
               "src/styles.scss"
             ],
             "scripts": [
-              {
-                "bundleName": "pyb-mp.utils",
-                "input": "src/utils/pyb-mp.utils.js"
-              }
             ]
           },
           "configurations": {

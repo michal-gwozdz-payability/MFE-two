@@ -1,22 +1,26 @@
-<div class="pyb-mp-status flex items-center flex-row justify-between rounded-sm border-2 border-gray-200 m-1 p-4 w-min">
-  <div class="pyb-mp-status__left flex items-center flex-row">
-    <p class="font-semibold">{{ statusConfig?.label }}</p>
+<div class="pyb-mp-status flex items-center flex-col items-start rounded-sm border-l-2 border-r-2 border-t-2 border-gray-200 m-1 w-min">
+  <div class="flex flex-row w-full justify-between bg-gray-50 border-gray-200 border-b-2">
+    <div class="pyb-mp-status__left flex flex-row items-center flex-row m-4">
+      <p class="font-semibold">{{ label }}</p>
 
-    <ng-container *ngIf="statusLoading; else statusTemplate">
-      <div class="loader ease-linear rounded-full border-2 border-t-2 border-gray-200 h-3 w-3 mx-2"></div>
-    </ng-container>
+      <ng-container *ngIf="statusLoading; else statusTemplate">
+        <div class="loader ease-linear rounded-full border-2 border-t-2 h-3 w-3 mx-2"></div>
+      </ng-container>
 
-    <ng-template #statusTemplate>
+      <ng-template #statusTemplate>
        <span class="flex items-center flex-row">
         <div class="rounded-full bg-gray-200 h-3 w-3 ml-3 mr-2" [ngClass]="statusBgColor"></div>
-        <p [ngClass]="statusFontColor">{{ statusConfig?.status }}</p>
+        <p [ngClass]="statusFontColor">{{ status }}</p>
       </span>
-    </ng-template>
+      </ng-template>
+    </div>
+
+    <div class="pyb-mp-status__right flex items-center flex-row w-40 h-10 overflow-hidden m-4">
+      <img [src]="logo">
+    </div>
   </div>
 
-  <div class="pyb-mp-status__right flex items-center flex-row w-40 h-10 overflow-hidden ml-10">
-    <img [src]="statusConfig?.logo">
+  <div *ngIf="isSetupRequired" class="p-4 w-full border-gray-200 border-b-2">
+    <ng-content></ng-content>
   </div>
-
-  <ng-content></ng-content>
 </div>

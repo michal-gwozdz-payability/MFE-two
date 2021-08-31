@@ -2,11 +2,11 @@ import {enableProdMode} from '@angular/core';
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 
 import {environment} from './environments/environment';
-import {PybMpStatusModule} from './status/pyb-mp-status.module';
+import {DemoModule} from './demo/demo.module';
 
 if (environment.production) {
   enableProdMode();
 }
 
-platformBrowserDynamic().bootstrapModule(PybMpStatusModule)
+platformBrowserDynamic().bootstrapModule(DemoModule)
   .catch(err => console.error(err));
