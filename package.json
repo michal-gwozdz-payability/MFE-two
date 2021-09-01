@@ -5,7 +5,7 @@
     "ng": "ng",
     "start": "npm run build && npm run buildrun",
     "build": "ng build --configuration production --single-bundle --vendor-chunk false",
-    "buildrun": "npm run-script build && lite-server --baseDir=dist/MFE-two"
+    "buildrun": "npm run-script build && node concat.js && lite-server --baseDir=output"
   },
   "private": true,
   "dependencies": {
