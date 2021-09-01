@@ -15,7 +15,7 @@ import {PybMpStatusService} from './pyb-mp-status.service';
   templateUrl: './pyb-mp-status.component.html',
   styleUrls: ['./pyb-mp-status.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.ShadowDom
 })
 export class PybMpStatusComponent {
   private _status: PybMpStatusState = PybMpStatusState.Init;

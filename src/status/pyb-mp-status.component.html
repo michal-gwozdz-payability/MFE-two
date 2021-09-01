@@ -21,6 +21,7 @@
   </div>
 
   <div *ngIf="isSetupRequired" class="p-4 w-full border-gray-200 border-b-2">
-    <ng-content></ng-content>
+    <ng-content select="content"></ng-content>
+    <slot name="content"></slot>
   </div>
 </div>
