@@ -2,7 +2,7 @@
 @import "tailwindcss/utilities";
 
 .pyb-mp-status {
-  width: 600px;
+  min-width: 400px;
   align-items: start;
 
   &__left {
